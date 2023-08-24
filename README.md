@@ -16,8 +16,10 @@ The PHP Database Class is a utility for simplifying database operations in PHP a
 
 ```php
 require_once 'path/to/Database.php';
+```
 
 ## Usage
+
 ## DB Connection
 
 ```php
@@ -28,9 +30,11 @@ function db() {
     global $db;
     return $db;
 }
+```
 
 ## SELECT Single Row
 
+```php
 $query  = "SELECT * FROM [users] WHERE UserID = ? AND Active = ?";
 $params = array((int)$userid, 1);
 
@@ -43,9 +47,11 @@ echo $user->Email;
 $user = db()->get_row($query, $params, "array");
 echo $user['Username'];
 echo $user['Email'];
+```
 
 ## SELECT Multiple Rows
 
+```php
 $query = "SELECT * FROM [users] WHERE Active = ?";
 $params = array(1);
 
@@ -54,25 +60,28 @@ foreach ($users as $user) {
     echo $user->Username;
     echo $user->Email;
 }
-
+```
 ## INSERT Query
 
+```php
 $table = "User";
 $fields = array("Username", "Email");
 $params = array($data['Username'], $data['Email']);
 $db->insert($table, $fields, $params);
-
+```
 
 ## UPDATE Query
 
+```php
 $what   = array("Username", "Email");
 $where  = array("UserID");
 $params = array($data['Username'], $data['Email'], $data['UserID']);
 $db->update("User", $what, $where, $params);
-
+```
 
 ## DELETE Query
 
+```php
 $table   = "User";
 $where   = array("UserID");
 $params  = array($id);
@@ -82,7 +91,7 @@ if ($deleted) {
 } else {
     echo "Deletion failed.";
 }
-
+```
 
 ## Important Note
 This class working with MSSQL databases. Make sure to handle database connections, credentials, and security properly in your application.
